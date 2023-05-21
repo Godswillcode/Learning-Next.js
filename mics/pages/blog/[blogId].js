@@ -8,7 +8,9 @@ function Blog({ title, description }) {
         <title>{title}</title>
         <meta name="description" content={description} />
       </Head>
-      <h1 className="content">Article</h1>
+      <h1 className="content">
+        Article, my username: {process.env.NEXT_PUBLIC_USERNAME}
+      </h1>
     </>
   );
 }
@@ -16,6 +18,9 @@ function Blog({ title, description }) {
 export default Blog;
 
 export async function getServerSideProps() {
+  const user = process.env.DB_USER;
+  const password = process.env.DB_PASSWORD;
+  console.log(user, password);
   return {
     props: {
       title: "Article Title",
